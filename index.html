@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ибрай Алтынсарин | Ыбырай Алтынсарин</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .quiz-option { transition: all 0.2s ease-in-out; }
+        .correct-answer { background-color: #dcfce7; border-color: #22c55e; color: #166534; }
+        .wrong-answer { background-color: #fee2e2; border-color: #ef4444; color: #991b1b; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-200 selection:text-slate-900">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">A</div>
+                    <span class="font-bold text-xl text-blue-900" data-i18n="navTitle">Ибрай Алтынсарин</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#bio" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition" data-i18n="navBio">Биография</a>
+                    <a href="#quiz" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition" data-i18n="navQuiz">Викторина</a>
+                    <button id="langToggle" class="ml-4 px-3 py-1 rounded-full bg-amber-100 text-amber-700 font-semibold text-sm hover:bg-amber-200 transition">
+                        ҚАЗ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / Biography Section -->
+    <section id="bio" class="pt-20 pb-16 px-4">
+        <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+            <div class="md:flex">
+                <div class="md:shrink-0 bg-blue-50 md:w-2/5 flex flex-col justify-center items-center p-8 border-r border-slate-100">
+                    <!-- Placeholder for Portrait (using a decorative book/education icon since we can't use external images reliably) -->
+                    <div class="w-48 h-48 bg-blue-100 rounded-full flex items-center justify-center mb-6 shadow-inner border-4 border-white">
+                        <svg class="w-24 h-24 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 text-center" data-i18n="heroName">Ибрай Алтынсарин</h2>
+                    <p class="text-blue-600 font-medium mt-2" data-i18n="heroYears">(1841 – 1889)</p>
+                </div>
+                <div class="p-8 md:p-12 md:w-3/5 flex flex-col justify-center">
+                    <h1 class="text-3xl font-bold text-blue-900 mb-6 relative inline-block">
+                        <span data-i18n="bioTitle">Великий просветитель степи</span>
+                        <div class="h-1 w-16 bg-amber-400 absolute -bottom-2 left-0 rounded-full"></div>
+                    </h1>
+                    <div class="space-y-4 text-slate-600 leading-relaxed" data-i18n="bioContent">
+                        <p>Ибрай Алтынсарин — выдающийся казахский просветитель, педагог, писатель, этнограф и фольклорист. Он является создателем казахского алфавита на основе кириллицы.</p>
+                        <p>Родился в 1841 году в <strong>Костанайской области</strong>. Всю свою жизнь он посвятил благородному делу — открытию светских школ для казахских детей и написанию для них первых учебников.</p>
+                        <p>Его самое известное стихотворение, ставшее призывом к знаниям для многих поколений, — <strong>«Кел, балалар, оқылық!»</strong> («Давайте, дети, учиться!»).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="py-16 px-4 bg-slate-100">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-blue-900 inline-block relative">
+                    <span data-i18n="quizTitle">Проверьте свои знания</span>
+                    <div class="h-1 w-24 bg-amber-400 absolute -bottom-2 left-1/2 transform -translate-x-1/2 rounded-full"></div>
+                </h2>
+                <p class="text-slate-500 mt-4" data-i18n="quizSubtitle">Ответьте на 5 вопросов об Ибрае Алтынсарине</p>
+            </div>
+
+            <div id="quiz-container" class="space-y-6">
+                <!-- Questions will be injected here by JS -->
+            </div>
+
+            <div class="mt-10 text-center">
+                <button id="submitQuiz" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5" data-i18n="btnCheck">
+                    Проверить ответы
+                </button>
+            </div>
+
+            <div id="quiz-result" class="hidden mt-8 p-6 bg-white rounded-2xl shadow-md text-center border border-slate-200">
+                <h3 class="text-2xl font-bold text-slate-800" id="result-text"></h3>
+                <p class="text-slate-500 mt-2" data-i18n="resultMsg">Отличная работа!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-slate-300 py-8 text-center">
+        <p data-i18n="footerText">© 2026. Образовательный проект. Посвящается Ибраю Алтынсарину.</p>
+    </footer>
+
+    <script>
+        // --- Data & Translations ---
+        const translations = {
+            ru: {
+                navTitle: "Ибрай Алтынсарин",
+                navBio: "Биография",
+                navQuiz: "Викторина",
+                heroName: "Ибрай Алтынсарин",
+                heroYears: "(1841 – 1889)",
+                bioTitle: "Великий просветитель степи",
+                bioContent: `
+                    <p class="mb-4">Ибрай Алтынсарин — выдающийся казахский просветитель, педагог, писатель, этнограф и фольклорист. Он является создателем казахского алфавита на основе кириллицы.</p>
+                    <p class="mb-4">Родился в 1841 году в <strong class="text-blue-900">Костанайской области</strong>. Всю свою жизнь он посвятил благородному делу — открытию светских школ для казахских детей и написанию для них первых учебников.</p>
+                    <p>Его самое известное стихотворение, ставшее призывом к знаниям для многих поколений, — <strong class="text-blue-900">«Кел, балалар, оқылық!»</strong> («Давайте, дети, учиться!»).</p>
+                `,
+                quizTitle: "Проверьте свои знания",
+                quizSubtitle: "Ответьте на 5 вопросов об Ибрае Алтынсарине",
+                btnCheck: "Проверить ответы",
+                resultPrefix: "Ваш результат: ",
+                resultSuffix: " из 5",
+                resultMsg: "Спасибо за участие!",
+                footerText: "© 2026. Образовательный проект. Посвящается Ибраю Алтынсарину."
+            },
+            kz: {
+                navTitle: "Ыбырай Алтынсарин",
+                navBio: "Өмірбаяны",
+                navQuiz: "Викторина",
+                heroName: "Ыбырай Алтынсарин",
+                heroYears: "(1841 – 1889)",
+                bioTitle: "Ұлы даланың ұлы ағартушысы",
+                bioContent: `
+                    <p class="mb-4">Ыбырай Алтынсарин — көрнекті қазақ ағартушысы, педагог, жазушы, этнограф, фольклоршы және қоғам қайраткері. Ол кириллица негізіндегі қазақ әліпбиін жасаушы.</p>
+                    <p class="mb-4">1841 жылы <strong class="text-blue-900">Қостанай облысында</strong> дүниеге келген. Ол өз өмірін қазақ балаларына арналған зайырлы мектептер ашуға және оқулықтар жазуға арнады.</p>
+                    <p>Оның білімге шақыратын ең танымал өлеңі — <strong class="text-blue-900">«Кел, балалар, оқылық!»</strong>.</p>
+                `,
+                quizTitle: "Өз біліміңізді тексеріңіз",
+                quizSubtitle: "Ыбырай Алтынсарин туралы 5 сұраққа жауап беріңіз",
+                btnCheck: "Жауаптарды тексеру",
+                resultPrefix: "Сіздің нәтижеңіз: 5-тен ",
+                resultSuffix: "",
+                resultMsg: "Қатысқаныңызға рақмет!",
+                footerText: "© 2026. Білім беру жобасы. Ыбырай Алтынсаринге арналады."
+            }
+        };
+
+        const quizData = [
+            {
+                id: 'q1',
+                correctIndex: 0,
+                ru: { q: "Кем был Ибрай Алтынсарин?", options: ["Просветитель и педагог", "Хан", "Военный деятель"] },
+                kz: { q: "Ыбырай Алтынсарин кім болған?", options: ["Ағартушы және педагог", "Хан", "Әскери қайраткер"] }
+            },
+            {
+                id: 'q2',
+                correctIndex: 0,
+                ru: { q: "Какое знаменитое стихотворение он написал?", options: ["Кел, балалар, оқылық", "Қара сөздер", "Мен қазақпын"] },
+                kz: { q: "Ол қандай атақты өлең жазды?", options: ["Кел, балалар, оқылық", "Қара сөздер", "Мен қазақпын"] }
+            },
+            {
+                id: 'q3',
+                correctIndex: 0,
+                ru: { q: "В какой области родился Ибрай Алтынсарин?", options: ["Костанайская", "Алматинская", "Северо-Казахстанская"] },
+                kz: { q: "Ыбырай Алтынсарин қай облыста дүниеге келді?", options: ["Қостанай", "Алматы", "Солтүстік Қазақстан"] }
+            },
+            {
+                id: 'q4',
+                correctIndex: 0,
+                ru: { q: "Какую книгу он составил для школ?", options: ["Казахская хрестоматия", "Путь Абая", "Слова назидания"] },
+                kz: { q: "Ол мектептерге арнап қандай кітап құрастырды?", options: ["Қазақ хрестоматиясы", "Абай жолы", "Қара сөздер"] }
+            },
+            {
+                id: 'q5',
+                correctIndex: 0,
+                ru: { q: "В каком году он родился?", options: ["1841", "1845", "1904"] },
+                kz: { q: "Ол қай жылы дүниеге келді?", options: ["1841", "1845", "1904"] }
+            }
+        ];
+
+        // --- State ---
+        let currentLang = 'ru';
+        let quizSubmitted = false;
+
+        // --- DOM Elements ---
+        const langToggleBtn = document.getElementById('langToggle');
+        const quizContainer = document.getElementById('quiz-container');
+        const submitBtn = document.getElementById('submitQuiz');
+        const resultDiv = document.getElementById('quiz-result');
+        const resultText = document.getElementById('result-text');
+
+        // --- Functions ---
+        
+        // Update Static Text based on Language
+        function updateStaticText() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    if (key === 'bioContent') {
+                        el.innerHTML = translations[currentLang][key]; // allow HTML for bio
+                    } else {
+                        el.textContent = translations[currentLang][key];
+                    }
+                }
+            });
+            // Update button text explicitly
+            langToggleBtn.textContent = currentLang === 'ru' ? 'ҚАЗ' : 'РУС';
+            document.documentElement.lang = currentLang;
+        }
+
+        // Render Quiz Questions
+        function renderQuiz() {
+            quizContainer.innerHTML = '';
+            quizSubmitted = false;
+            resultDiv.classList.add('hidden');
+            submitBtn.style.display = 'inline-block';
+
+            quizData.forEach((qData, index) => {
+                const qContent = qData[currentLang];
+                
+                const qBlock = document.createElement('div');
+                qBlock.className = 'bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200';
+                qBlock.id = `block-${qData.id}`;
+                
+                // Question Header
+                const qTitle = document.createElement('h3');
+                qTitle.className = 'text-lg font-bold text-slate-800 mb-4';
+                qTitle.textContent = `${index + 1}. ${qContent.q}`;
+                qBlock.appendChild(qTitle);
+
+                // Options
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'space-y-3';
+
+                qContent.options.forEach((optText, optIndex) => {
+                    const optLabel = document.createElement('label');
+                    optLabel.className = 'quiz-option flex items-center p-4 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50';
+                    optLabel.id = `label-${qData.id}-${optIndex}`;
+                    
+                    const optInput = document.createElement('input');
+                    optInput.type = 'radio';
+                    optInput.name = qData.id;
+                    optInput.value = optIndex;
+                    optInput.className = 'w-5 h-5 text-blue-600 focus:ring-blue-500 border-slate-300';
+                    
+                    const optSpan = document.createElement('span');
+                    optSpan.className = 'ml-3 text-slate-700 font-medium';
+                    optSpan.textContent = optText;
+
+                    optLabel.appendChild(optInput);
+                    optLabel.appendChild(optSpan);
+                    optionsDiv.appendChild(optLabel);
+                });
+
+                qBlock.appendChild(optionsDiv);
+                quizContainer.appendChild(qBlock);
+            });
+        }
+
+        // Check Quiz Answers
+        function checkAnswers() {
+            if (quizSubmitted) return;
+            
+            let score = 0;
+            
+            quizData.forEach(qData => {
+                const selectedInput = document.querySelector(`input[name="${qData.id}"]:checked`);
+                const correctIndex = qData.correctIndex;
+                
+                // Reset styling for all labels in this question
+                const allLabels = document.querySelectorAll(`input[name="${qData.id}"]`);
+                allLabels.forEach(input => {
+                    input.disabled = true; // Disable inputs after submission
+                    const label = input.closest('label');
+                    label.classList.remove('hover:bg-slate-50', 'cursor-pointer');
+                    
+                    // Highlight correct answer
+                    if (parseInt(input.value) === correctIndex) {
+                        label.classList.add('correct-answer');
+                    }
+                });
+
+                if (selectedInput) {
+                    const selectedVal = parseInt(selectedInput.value);
+                    if (selectedVal === correctIndex) {
+                        score++;
+                    } else {
+                        // Highlight wrong selection
+                        selectedInput.closest('label').classList.add('wrong-answer');
+                    }
+                }
+            });
+
+            // Show result
+            const prefix = translations[currentLang].resultPrefix;
+            const suffix = translations[currentLang].resultSuffix;
+            
+            if (currentLang === 'ru') {
+                resultText.textContent = `${prefix}${score}${suffix}`;
+            } else {
+                resultText.textContent = `${prefix}${score}`; // KZ formatting
+            }
+            
+            resultDiv.classList.remove('hidden');
+            submitBtn.style.display = 'none';
+            quizSubmitted = true;
+        }
+
+        // --- Event Listeners ---
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'ru' ? 'kz' : 'ru';
+            updateStaticText();
+            renderQuiz(); // Re-render quiz in new language (resets progress)
+        });
+
+        submitBtn.addEventListener('click', checkAnswers);
+
+        // --- Initialization ---
+        updateStaticText();
+        renderQuiz();
+
+    </script>
+</body>
+</html>
